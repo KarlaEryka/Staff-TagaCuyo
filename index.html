@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+	<link rel="stylesheet" href="dashboard.css">	
+	<title>Admin Dashboard</title>
+</head>
+<body>
+	
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand"><img src="images/logo.png" width="70px" height="70px"></i> TAGA-CUYO</a>
+		<ul class="side-menu">
+			<li><a href="#" class="active"><i class='bx bxs-dashboard icon'></i>Dashboard</a></li>
+			<li class="divider" data-text="main">Main</li>
+			</li>
+			<li><a href="content_management.html"><i class='bx bxs-widget icon'></i> Content Management</a></li>
+			<li><a href="reports.html"><i class='bx bxs-user-circle icon'></i>Reports</a></li>
+			
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+	<!-- NAVBAR -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu toggle-sidebar'></i>
+			<form action="#">
+				<div class="form-group">
+					<input type="text" placeholder="Search...">
+					<i class='bx bx-search icon'></i>
+				</div>
+			</form>
+			
+			</a>
+			<span class="divider"></span>
+			<div class="profile">
+				<img src="images/angel.jpg" alt="">
+				<ul class="profile-link">
+					<li><a href="/profile"><i class='bx bxs-user-circle icon'></i> Profile</a></li>
+					<li><a href="/settings"><i class='bx bxs-cog'></i> Settings</a></li>
+					<li><a href="/logout"><i class='bx bxs-log-out-circle'></i> Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+            <div class="profile-container">
+                <div class="profile-header">
+                    <img src="images/angel.jpg" alt="Profile Image" class="profile-pic">
+                    <h2>Angel Mae Gabayan</h2>
+                    <p class="position">Head Staff - Chief Secretary</p>
+                    <p>32 | Female</p>
+                    <p>Rizal Ave. Puerto Princesa City, Palawan</p>
+                    <p>Email: <a href="mailto:angelmae@gmail.com">angelmae@gmail.com</a></p>
+                </div>
+        
+                <div class="activity-log">
+                    <h3>Activity Log</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Date Made</th>
+                                <th>Status</th>
+                                <th>Executed by</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activityTable">
+                            <!-- Data will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+	<script src="script.js"></script>
+</body>
+</html>

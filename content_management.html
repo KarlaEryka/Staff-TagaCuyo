@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+	<link rel="stylesheet" href="content.css">	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<title>Content Management</title>
+</head>
+<body>
+	
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand"><img src="images/logo.png" width="70px" height="70px"></i> TAGA-CUYO</a>
+		<ul class="side-menu">
+			<li><a href="index.html" ><i class='bx bxs-dashboard icon'></i>Dashboard</a></li>
+			<li class="divider" data-text="main">Main</li>
+			</li>
+			<li><a href="content_management.html"class="active"><i class='bx bxs-widget icon'></i> Content Management</a></li>
+			<li><a href="reports.html"><i class='bx bxs-user-circle icon'></i>Reports</a></li>
+			
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+	<!-- NAVBAR -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu toggle-sidebar'></i>
+			<form action="#">
+				<div class="form-group">
+					<input type="text" placeholder="Search...">
+					<i class='bx bx-search icon'></i>
+				</div>
+			</form>
+			
+			</a>
+			<span class="divider"></span>
+			<div class="profile">
+				<img src="images/angel.jpg" alt="">
+				<ul class="profile-link">
+					<li><a href="/profile"><i class='bx bxs-user-circle icon'></i> Profile</a></li>
+					<li><a href="/settings"><i class='bx bxs-cog'></i> Settings</a></li>
+					<li><a href="/logout"><i class='bx bxs-log-out-circle'></i> Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
+
+<main>
+    <div class="container">
+        <h1>Content Management</h1>
+        <div class="create-content" onclick="showContentForm()">
+            CREATE NEW CONTENT <i class="fas fa-plus-circle"></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>CONTENT</th>
+                    <th>NAME</th>
+                    <th>SUB-NAME</th>
+                    <th>DATE</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody id="content-table-body">
+                <tr>
+                    <td>Category</td>
+                    <td>Tao</td>
+                    <td>Parte ng Katawan</td>
+                    <td class="date">September 8, 2024</td>
+                    <td class="action-icons">
+                        <i class="fas fa-edit edit-icon" onclick="editContent(this)"></i>
+                        <i class="fas fa-trash delete-icon" onclick="deleteContent(this)"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lesson</td>
+                    <td>Aralin 1</td>
+                    <td>Tao at ......</td>
+                    <td class="date">September 8, 2024</td>
+                    <td class="action-icons">
+                        <i class="fas fa-edit edit-icon" onclick="editContent(this)"></i>
+                        <i class="fas fa-trash delete-icon" onclick="deleteContent(this)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="form-popup" id="content-form">
+            <span class="close-btn" onclick="closeContentForm()">&times;</span>
+            <h2>Create New Content</h2>
+            <div class="form-group">
+                <label for="content-type">Select Content Type</label>
+                <select id="content-type" onchange="toggleContentForm()">
+                    <option value="">Select</option>
+                    <option value="lesson">Lesson</option>
+                    <option value="category">Category</option>
+                </select>
+            </div>
+
+            <div id="lesson-form" style="display: none;">
+                <h3>Add Lesson</h3>
+                <div class="form-group">
+                    <label for="lesson-select">Select Lesson</label>
+                    <select id="lesson-select">
+                        <option>Aralin 1. Tao at ......</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="word">Word</label>
+                    <input type="text" id="word">
+                </div>
+                <div class="form-group">
+                    <label for="translation">Translation</label>
+                    <input type="text" id="translation">
+                </div>
+                <div class="form-group">
+                    <label for="incorrect-choices">Incorrect Choices</label>
+                    <div id="incorrect-choices-container">
+                        <input type="text" class="incorrect-choice">
+                    </div>
+                    <button class="add-more" onclick="addIncorrectChoice()">Add Incorrect Choice</button>
+                </div>
+                <div class="form-group">
+                    <button class="add-more" onclick="addMoreSentences()">Add More Sentences</button>
+                    <button onclick="submitLesson()">Submit Lesson</button>
+                </div>
+            </div>
+
+            <div id="category-form" style="display: none;">
+                <h3>Add Category</h3>
+                <div class="form-group">
+                    <label for="category-select">Select Category</label>
+                    <select id="category-select">
+                        <option>Tao</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subcategory-select">Select Subcategory</label>
+                    <select id="subcategory-select">
+                        <option>Hanapbuhay</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category-word">Word</label>
+                    <input type="text" id="category-word">
+                </div>
+                <div class="form-group">
+                    <label for="category-translation">Translation</label>
+                    <input type="text" id="category-translation">
+                </div>
+                <div class="form-group">
+                    <label for="category-incorrect-choices">Incorrect Choices</label>
+                    <textarea id="category-incorrect-choices"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="audio-file">Upload Audio</label>
+                    <input type="file" id="audio-file">
+                </div>
+                <div class="form-group">
+                    <label for="image-file">Upload Image</label>
+                    <input type="file" id="image-file">
+                </div>
+                <div class="form-group">
+                    <button onclick="submitCategory()">Submit Category</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-popup" id="edit-form">
+            <span class="close-btn" onclick="closeEditForm()">&times;</span>
+            <h2>Edit Content</h2>
+            <div class="form-group">
+                <label for="edit-content-type">Content Type</label>
+                <input type="text" id="edit-content-type" disabled>
+            </div>
+            <div id="edit-lesson-form" style="display: none;">
+                <h3>Edit Lesson</h3>
+                <div class="form-group">
+                    <label for="edit-lesson-select">Select Lesson</label>
+                    <select id="edit-lesson-select">
+                        <option>Aralin 1. Tao at ......</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-word">Word</label>
+                    <input type="text" id="edit-word">
+                </div>
+                <div class="form-group">
+                    <label for="edit-translation">Translation</label>
+                    <input type="text" id="edit-translation">
+                </div>
+                <div class="form-group">
+                    <label for="edit-incorrect-choices">Incorrect Choices</label>
+                    <div id="edit-incorrect-choices-container">
+                        <input type="text" class="incorrect-choice">
+                    </div>
+                    <button class="add-more" onclick="addEditIncorrectChoice()">Add Incorrect Choice</button>
+                </div>
+                <div class="form-group">
+                    <button onclick="submitEditLesson()">Save</button>
+                </div>
+            </div>
+
+            <div id="edit-category-form" style="display: none;">
+                <h3>Edit Category</h3>
+                <div class="form-group">
+                    <label for="edit-category-select">Select Category</label>
+                    <select id="edit-category-select">
+                        <option>Tao</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-subcategory-select">Select Subcategory</label>
+                    <select id="edit-subcategory-select">
+                        <option>Hanapbuhay</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-category-word">Word</label>
+                    <input type="text" id="edit-category-word">
+                </div>
+                <div class="form-group">
+                    <label for="edit-category-translation">Translation</label>
+                    <input type="text" id="edit-category-translation">
+                </div>
+                <div class="form-group">
+                    <label for="edit-category-incorrect-choices">Incorrect Choices</label>
+                    <textarea id="edit-category-incorrect-choices"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-audio-file">Upload Audio</label>
+                    <input type="file" id="edit-audio-file">
+                </div>
+                <div class="form-group">
+                    <label for="edit-image-file">Upload Image</label>
+                    <input type="file" id="edit-image-file">
+                </div>
+                <div class="form-group">
+                    <button onclick="submitEditCategory()">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="notification" id="notification"></div>
+    </div>
+
+    <script>
+        function showNotification(message) {
+            var notification = document.getElementById('notification');
+            notification.innerText = message;
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        function showContentForm() {
+            document.getElementById('content-form').style.display = 'block';
+        }
+
+        function closeContentForm() {
+            document.getElementById('content-form').style.display = 'none';
+        }
+
+        function toggleContentForm() {
+            var contentType = document.getElementById('content-type').value;
+            if (contentType === 'lesson') {
+                document.getElementById('lesson-form').style.display = 'block';
+                document.getElementById('category-form').style.display = 'none';
+            } else if (contentType === 'category') {
+                document.getElementById('lesson-form').style.display = 'none';
+                document.getElementById('category-form').style.display = 'block';
+            } else {
+                document.getElementById('lesson-form').style.display = 'none';
+                document.getElementById('category-form').style.display = 'none';
+            }
+        }
+
+        function addIncorrectChoice() {
+            var container = document.getElementById('incorrect-choices-container');
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'incorrect-choice';
+            container.appendChild(input);
+        }
+
+        function addMoreSentences() {
+            showNotification('More sentences added');
+        }
+
+        function submitLesson() {
+            var lessonSelect = document.getElementById('lesson-select').value;
+            var word = document.getElementById('word').value;
+            var translation = document.getElementById('translation').value;
+            var incorrectChoices = Array.from(document.getElementsByClassName('incorrect-choice')).map(input => input.value);
+
+            // Add the new lesson to the table
+            var tableBody = document.getElementById('content-table-body');
+            var newRow = tableBody.insertRow();
+            newRow.innerHTML = `
+                <td>Lesson</td>
+                <td>${lessonSelect}</td>
+                <td>${word}</td>
+                <td class="date">${new Date().toLocaleDateString()}</td>
+                <td class="action-icons">
+                    <i class="fas fa-edit edit-icon" onclick="editContent(this)"></i>
+                    <i class="fas fa-trash delete-icon" onclick="deleteContent(this)"></i>
+                </td>
+            `;
+
+            closeContentForm();
+            showNotification('Lesson added successfully');
+        }
+
+        function submitCategory() {
+            var categorySelect = document.getElementById('category-select').value;
+            var subcategorySelect = document.getElementById('subcategory-select').value;
+            var word = document.getElementById('category-word').value;
+            var translation = document.getElementById('category-translation').value;
+            var incorrectChoices = document.getElementById('category-incorrect-choices').value;
+
+            // Add the new category to the table
+            var tableBody = document.getElementById('content-table-body');
+            var newRow = tableBody.insertRow();
+            newRow.innerHTML = `
+                <td>Category</td>
+                <td>${categorySelect}</td>
+                <td>${subcategorySelect}</td>
+                <td class="date">${new Date().toLocaleDateString()}</td>
+                <td class="action-icons">
+                    <i class="fas fa-edit edit-icon" onclick="editContent(this)"></i>
+                    <i class="fas fa-trash delete-icon" onclick="deleteContent(this)"></i>
+                </td>
+            `;
+
+            closeContentForm();
+            showNotification('Category added successfully');
+        }
+
+        function editContent(element) {
+            var row = element.closest('tr');
+            var contentType = row.cells[0].innerText;
+            var name = row.cells[1].innerText;
+            var subName = row.cells[2].innerText;
+
+            document.getElementById('edit-content-type').value = contentType;
+
+            if (contentType === 'Lesson') {
+                document.getElementById('edit-lesson-form').style.display = 'block';
+                document.getElementById('edit-category-form').style.display = 'none';
+                document.getElementById('edit-lesson-select').value = name;
+                document.getElementById('edit-word').value = subName;
+                // Populate other fields as needed
+            } else if (contentType === 'Category') {
+                document.getElementById('edit-lesson-form').style.display = 'none';
+                document.getElementById('edit-category-form').style.display = 'block';
+                document.getElementById('edit-category-select').value = name;
+                document.getElementById('edit-subcategory-select').value = subName;
+                // Populate other fields as needed
+            }
+
+            document.getElementById('edit-form').style.display = 'block';
+        }
+
+        function closeEditForm() {
+            document.getElementById('edit-form').style.display = 'none';
+        }
+
+        function addEditIncorrectChoice() {
+            var container = document.getElementById('edit-incorrect-choices-container');
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'incorrect-choice';
+            container.appendChild(input);
+        }
+
+        function submitEditLesson() {
+            // Implement edit functionality here
+            closeEditForm();
+            showNotification('Edit successful');
+        }
+
+        function submitEditCategory() {
+            // Implement edit functionality here
+            closeEditForm();
+            showNotification('Edit successful');
+        }
+
+        function deleteContent(element) {
+            var row = element.closest('tr');
+            row.remove();
+            showNotification('Delete successful');
+        }
+    </script>
+</main>
+</html>
